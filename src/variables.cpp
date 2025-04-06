@@ -1,7 +1,9 @@
-#include <raylib.h>
+#include "variables.h"
 
-const Color pictonBlue = {0, 166, 251, 255};
-const Color night = {20, 19, 22, 255};
+Color pictonBlue = {0, 166, 251, 255};
+Color night = {20, 19, 22, 255};
 
-constexpr int cellSize = 30;
-constexpr int cellCount = 30;
+int cellSize = 30;
+int cellCount = 30;
+
+double lastUpdateTime = 0;

@@ -1,12 +1,22 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include "Player.h"
+#include "variables.h"
+
 class Game
 {
 private:
-    /* data */
+    bool running = true;
+
 public:
-    Game(/* args */);
+    Player player;
+
+    Game();
+    void Draw();
+    void Update();
+
+
     ~Game();
 };
 #endif

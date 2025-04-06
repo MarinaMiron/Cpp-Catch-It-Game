@@ -1,9 +1,18 @@
 #include "Game.h"
 
-Game::Game(/* args */)
+Game::Game(){}
+
+void Game::Draw()
 {
+    player.Draw();
 }
 
-Game::~Game()
+// Update the game
+void Game::Update()
 {
+    if(running)
+    {
+    }
 }
+
+Game::~Game(){}
