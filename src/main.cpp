@@ -4,7 +4,7 @@
 
 int main() 
 {
-    InitWindow(2 * offset + screenWidth, 2 * offset + screenHeight, "Catch It!");
+    InitWindow(screenWidth, screenHeight, "Catch It!");
     SetTargetFPS(60);
 
     Player player = Player();
@@ -22,8 +22,7 @@ int main()
         
         BeginDrawing();
         ClearBackground(pictonBlue);
-        DrawText("Catch It!", offset, 10, 40, night);
-        DrawRectangleLinesEx(Rectangle{(float)offset, (float)offset, (float)screenWidth, (float)screenHeight}, 5, night);
+        
         player.Draw();
         EndDrawing();
     }

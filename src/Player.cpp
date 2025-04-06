@@ -6,7 +6,7 @@ Player::Player()
     Image image = LoadImage("./graphics/basket.png");
     texture = LoadTextureFromImage(image);
     UnloadImage(image);
-    position = {offset + (screenWidth - image.width) / 2.0f, (float)offset + screenHeight - image.height};
+    position = {(screenWidth - image.width) / 2.0f, (float)screenHeight - image.height};
 }
 
 void Player::Draw()
