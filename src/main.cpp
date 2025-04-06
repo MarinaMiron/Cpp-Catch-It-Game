@@ -4,7 +4,7 @@
 
 int main() 
 {
-    InitWindow(screenWidth, screenHeight, "Catch It!");
+    InitWindow(cellSize * cellCount, cellSize * cellCount, "Catch It!");
     SetTargetFPS(60);
 
     Player player = Player();

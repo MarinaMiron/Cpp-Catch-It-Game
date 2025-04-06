@@ -12,7 +12,7 @@ public:
     Player();
     void Draw();
     void Move(int x){Object::position.x += x;};
-    bool CheckCollisionWithEdge();
+    
     ~Player();
 };
 #endif
