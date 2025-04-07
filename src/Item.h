@@ -11,9 +11,12 @@ private:
     
 public:
     Item();
-    void Draw();
+    void Draw() override;
+    
     Vector2 GenerateRandomPos();
-    void Fall(int y){Object::position.y += y;};
+
+    void Fall(int y);
+
     ~Item();
 };
 #endif

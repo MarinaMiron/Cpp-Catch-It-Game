@@ -26,6 +26,11 @@ int main()
     {
         BeginDrawing();
 
+        if(EventTriggered(0.5))
+        {
+            game.SpawnItem();  
+        }
+
         if(EventTriggered(0.2))
         {
             game.Update();  
@@ -40,8 +45,9 @@ int main()
             game.player.Move(10);
         }
 
+        // Drawing
         ClearBackground(pictonBlue);
-        
+        DrawText(TextFormat("Score: %i", game.GetScore()), 10, 10, 40, night);
         game.Draw();
         EndDrawing();
     }

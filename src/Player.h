@@ -12,10 +12,9 @@ private:
     
 public:
     Player();
-    void Draw();
-    void Move(int x){Object::position.x += x;};
-    Texture2D GetTexture(){return Object::texture;};
-    Vector2 GetPos(){return Object::position;};
+    void Draw() override;
+
+    void Move(int x);
     
     ~Player();
 };

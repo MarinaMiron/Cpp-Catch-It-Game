@@ -14,6 +14,11 @@ void Player::Draw()
     DrawTexture(texture, position.x, position.y, WHITE);
 }
 
+void Player::Move(int x)
+{
+    position.x += x;
+}
+
 Player::~Player()
 {
     UnloadTexture(texture);

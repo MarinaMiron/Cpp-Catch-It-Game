@@ -11,7 +11,9 @@ protected:
     
 public:
     Object();
-
-    ~Object();
+    virtual void Draw() = 0;
+    virtual Texture2D GetTexture();
+    virtual Vector2 GetPos();
+    virtual ~Object();
 };
 #endif
