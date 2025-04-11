@@ -16,8 +16,7 @@ void Game::SpawnItem()
         {
             if(interval != 1.0)
             {
-                interval -= 0.5;
-                std::cout << interval<< std::endl;  
+                interval -= 0.5; 
             }
         }
     } 

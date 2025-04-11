@@ -1,13 +1,28 @@
 #include "Item.h"
 #include <iostream>
+#include <filesystem>
 
 Item::Item(){
-    Image apple_image = LoadImage("./graphics/apple.png");
-    if (apple_image.data == nullptr) {
-        std::cout << "Failed to load apple.png!" << std::endl;
+    namespace fs = std::filesystem;
+
+    for (const auto& entry : fs::directory_iterator("./graphics/fruits")) 
+    {
+        if (entry.path().extension() == ".png") 
+        {
+            Image img = LoadImage(entry.path().string().c_str());
+            fruitTextures.push_back(img);
+        }
     }
-    texture = LoadTextureFromImage(apple_image);
-    UnloadImage(apple_image);
+
+    int randomIndex = GetRandomValue(0, (int)fruitTextures.size() - 1); // select fruit
+
+    texture = LoadTextureFromImage(fruitTextures[randomIndex]);
+
+    for(auto tex : fruitTextures)
+    {
+        UnloadImage(tex);
+    }
+
     position = GenerateRandomPos();
 }
 
