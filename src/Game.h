@@ -12,6 +12,9 @@ class Game
 {
 private:
     std::vector<std::unique_ptr<Item>> items;
+    double lastUpdateTime = 0.0;
+    double interval = 5.0;
+    int speed = 3;
     bool running = true;
     int score = 0;
 
@@ -26,6 +29,8 @@ public:
 
     void CheckCollisionWithItem();
     void CheckCollisionWithBottom();
+
+    bool EventTriggered(double interval);
     ~Game();
 };
 #endif

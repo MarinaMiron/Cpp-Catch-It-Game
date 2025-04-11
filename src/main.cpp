@@ -3,18 +3,6 @@
 #include "variables.h"
 #include "Game.h"
 
-// Update the game after 'interval' time
-bool EventTriggered(double interval)
-{
-    double currentTime = GetTime();
-    if(currentTime - lastUpdateTime >= interval)
-    {
-        lastUpdateTime = currentTime;
-        return true;
-    }
-    return false;
-}
-
 int main() 
 {
     InitWindow(cellSize * cellCount, cellSize * cellCount, "Catch It!");
@@ -26,15 +14,9 @@ int main()
     {
         BeginDrawing();
 
-        if(EventTriggered(0.5))
-        {
-            game.SpawnItem();  
-        }
-
-        if(EventTriggered(0.2))
-        {
-            game.Update();  
-        }
+        game.SpawnItem();  
+        
+        game.Update();  
         
         if((IsKeyPressed(KEY_LEFT) || IsKeyPressedRepeat(KEY_LEFT)) && game.player.GetPos().x >= 0)
         {

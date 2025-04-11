@@ -1,12 +1,26 @@
 #include "Game.h"
 #include <raymath.h>
+#include <unistd.h>
 
-Game::Game(){}
+Game::Game(){
+    items.emplace_back(std::make_unique<Item>());
+}
 
 // Spawn new 'fruit' item
 void Game::SpawnItem()
 {
-    items.emplace_back(std::make_unique<Item>());
+    if(EventTriggered(interval))
+    {
+        items.emplace_back(std::make_unique<Item>()); 
+        if(score > 0 && score % 5 == 0) // Increase difficulty as the score increases
+        {
+            if(interval != 1.0)
+            {
+                interval -= 0.5;
+                std::cout << interval<< std::endl;  
+            }
+        }
+    } 
 }
 
 void Game::Draw()
@@ -24,14 +38,15 @@ void Game::Update()
 {
     if(running)
     {
-        for (auto& item : items)
-        {
-          item->Fall(20);  
-        }
-        
-        CheckCollisionWithItem();
-        CheckCollisionWithBottom();
+      for(auto& item : items)
+    {
+    item->Fall(speed);  
     }
+    
+    CheckCollisionWithItem();
+    CheckCollisionWithBottom();  
+    }
+
 }
 
 // Checking if item touched bottom
@@ -42,7 +57,6 @@ void Game::CheckCollisionWithBottom()
        if((*it)->GetPos().y + (*it)->GetTexture().height >= cellSize * cellCount)
         {
             it = items.erase(it); // delete object
-            SpawnItem(); // spawn new object
         } 
         else
         {
@@ -78,7 +92,6 @@ void Game::CheckCollisionWithItem()
         {
             score++;
             it = items.erase(it); // delete object
-            SpawnItem(); // spawn new object
         
         }
         else
@@ -86,6 +99,18 @@ void Game::CheckCollisionWithItem()
             ++it;
         }
     }
+}
+
+// Update the game after 'interval' time
+bool Game::EventTriggered(double interval)
+{
+    double currentTime = GetTime();
+    if(currentTime - lastUpdateTime >= interval)
+    {
+        lastUpdateTime = currentTime;
+        return true;
+    }
+    return false;
 }
 
 Game::~Game() {}
